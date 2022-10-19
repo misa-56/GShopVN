@@ -2,9 +2,7 @@
     <!-- Grid container -->
     <div class="container p-4">
       <!-- Section: Social media -->
-      
-   
-  
+
       <!-- Section: Links -->
       <section class="">
         <!--Grid row-->
