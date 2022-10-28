@@ -1,0 +1,9 @@
+.navbar-nav {
+    flex-direction: row !important;
+}
+
+.nav-link {
+    /* display: block !important; */
+    padding: 0.5rem 1rem !important;
+    color: #17a2b8;
+}
