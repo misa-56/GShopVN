@@ -16,6 +16,7 @@ import {
     faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 import images from '../../../assets/images';
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -44,39 +45,39 @@ function Footer() {
 
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a href="/danh-muc/1-giai-tri.html" className="text-white">
+                                    <Link to="/danh-muc/1-giai-tri.html" className="text-white">
                                         Giải trí
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/2-lam-viec.html" className="text-white">
+                                    <Link to="/danh-muc/2-lam-viec.html" className="text-white">
                                         Làm việc
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/3-hoc-tap.html" className="text-white">
+                                    <Link to="/danh-muc/3-hoc-tap.html" className="text-white">
                                         Học tập
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/4-tien-ich-van-phong.html" className="text-white">
+                                    <Link to="/danh-muc/4-tien-ich-van-phong.html" className="text-white">
                                         Tiện ích văn phòng
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/5-thiet-ke.htmll" className="text-white">
+                                    <Link to="/danh-muc/5-thiet-ke.htmll" className="text-white">
                                         Thiết kế
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/6-vpn.html" className="text-white">
+                                    <Link to="/danh-muc/6-vpn.html" className="text-white">
                                         VPN
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/danh-muc/7-goi-cuoc-data-4g.html" className="text-white">
+                                    <Link to="/danh-muc/7-goi-cuoc-data-4g.html" className="text-white">
                                         Gói cước - Data 4G
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -89,9 +90,9 @@ function Footer() {
 
                                 <ul className="list-unstyled mb-0">
                                     <li>
-                                        <a href="/5-support" className="text-white">
+                                        <Link to="/5-support" className="text-white">
                                             Hướng dẫn thanh toán
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
                                         <a href="business.html" className="text-white">
@@ -197,6 +198,8 @@ function Footer() {
                                         <a
                                             href="https://www.facebook.com/groups/hoangtrieugiangnf"
                                             className="text-white"
+                                            target="_blank"
+                                            rel="noreferrer"
                                         >
                                             Facebook Group 1
                                         </a>
@@ -206,6 +209,8 @@ function Footer() {
                                         <a
                                             href="https://www.facebook.com/groups/gshoptaikhoanuytin"
                                             className="text-white"
+                                            target="_blank"
+                                            rel="noreferrer"
                                         >
                                             Facebook Group 2
                                         </a>

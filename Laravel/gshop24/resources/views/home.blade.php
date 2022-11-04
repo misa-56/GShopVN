@@ -12,7 +12,44 @@
                         <span class="list-group-title list-group-item text-white" style="font-size: 18px;"><b>Danh mục sản
                                 phẩm</b></span>
                         <ul class="p-0 m-0" style="transform: rotate(-180deg);">
-                            {!! \App\Helpers\Helper::menus($menus) !!}
+                            {{-- {!! \App\Helpers\Helper::menus($menus) !!} --}}
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0"
+                                    href="/danh-muc/7-goi-cuoc-data-4g.html">
+                                    <i class="fa-solid fa-signal"></i> Gói cước - Data 4G
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0" href="/danh-muc/6-vpn.html">
+                                    <i class="fa-solid fa-rotate-left"></i> VPN
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0" href="/danh-muc/5-thiet-ke.html">
+                                    <i class="fa-solid fa-marker"></i> Thiết Kế
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0"
+                                    href="/danh-muc/4-tien-ich-van-phong.html">
+                                    <i class="fa-regular fa-file-excel"></i> Tiện Ích Văn Phòng
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0" href="/danh-muc/3-hoc-tap.html">
+                                    <i class="fa-sharp fa-solid fa-graduation-cap"></i> Học Tập
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0" href="/danh-muc/2-lam-viec.html">
+                                    <i class="fa-solid fa-briefcase"></i> Làm Việc
+                                </a>
+                            </li>
+                            <li class="text-decoration-none" style="list-style-type: none; transform: rotate(-180deg);">
+                                <a class="list-group-item list-group-item-action border-0" href="/danh-muc/1-giai-tri.html">
+                                    <i class="fa-solid fa-tv"></i> Giải Trí
+                                </a>
+                            </li>
 
                         </ul>
                     </div>
@@ -46,6 +83,14 @@
                                     @if ($product->price_sale != null)
                                         {!! \App\Helpers\Helper::price($product->price, $product->price_sale) !!}<sup>đ</sup>
                                         <small class="text-muted"><del>{!! \App\Helpers\Helper::price($product->price) !!}<sup>đ</sup></del></small>
+                                        <span class="bg-danger rounded text-light p-1">
+                                            @php
+                                                $price = \App\Helpers\Helper::price($product->price);
+                                                $sale = \App\Helpers\Helper::price($product->price_sale);
+                                                $discount = floor(((float) $sale / (float) $price) * 100) - 100;
+                                            @endphp
+                                            {{ $discount }} %
+                                        </span>
                                     @else
                                         {!! \App\Helpers\Helper::price($product->price, $product->price_sale) !!}<sup>đ</sup>
                                     @endif

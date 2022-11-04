@@ -11,7 +11,7 @@ body {
 }
 /*--------------------------------*/
 header {
-    background: #365899;
+    background: #8166f1;
 }
 
 .navbar-brand {
@@ -59,7 +59,7 @@ ul.navbar-nav a:hover {
 }
 
 .list-group-title {
-    background-color: #365899;
+    background-color: #8166f1;
 }
 
 div.list-group a:hover {
@@ -120,8 +120,16 @@ p {
     .user-icon {
         border: 1px solid;
     }
+    /* .slick-dots {
+        display: none !important;
+    } */
 }
 
 .user-icon {
     font-size: 20px;
+}
+
+.slick-next:before,
+.slick-prev:before {
+    color: #8166f1;
 }

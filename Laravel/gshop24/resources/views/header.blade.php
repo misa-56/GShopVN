@@ -105,7 +105,7 @@
         </nav>
     </div>
 
-    <nav class="headerBot navbar navbar-dark navbar-expand-md p-0" style="background-color: #4267b2;">
+    <nav class="headerBot navbar navbar-dark navbar-expand-md p-0" style="background-color: #8166f1;">
         <div class="container">
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
                 data-target="#collapsibleNavbar">
