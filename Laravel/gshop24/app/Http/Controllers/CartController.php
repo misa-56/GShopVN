@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use App\Http\Services\CartService;
-use Illuminate\Support\Facades\Session;
 use App\Models\Customer;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -21,15 +19,15 @@ class CartController extends Controller
     public function index(Request $request)
     {
         $result = $this->cartService->create($request);
-        
+
         $data = $request->all();
         // dd($data);
-        
+
         if ($result === false) {
             return redirect()->back();
         }
 
-        return redirect()->back()->with('product_added','Thêm sản phẩm thành công');
+        return redirect()->back()->with('product_added', 'Thêm sản phẩm thành công');
     }
 
     public function show()
@@ -61,15 +59,15 @@ class CartController extends Controller
 
     public function addCart(Request $request, Customer $customer)
     {
-       
+
         $result = $this->cartService->addCart($request);
-        
+
         $customer = Customer::orderBy('id', 'DESC')->first();
         if ($result === false) {
             return redirect()->back();
         }
         return redirect()->route('checkout', [$customer->id, $customer->order_key]);
-        
+
     }
 
     //Checkout
@@ -81,17 +79,16 @@ class CartController extends Controller
     //         'customer' => $customer,
     //         'carts' => $customer->carts()->get()
     //     ]);
-        
+
     // }
     public function checkout(Customer $customer)
     {
         // $customer = Customer::orderBy('id', 'DESC')->first();
         return view('carts.checkout', [
-            'title' => 'Thanh Toán đơn hàng ' .$customer->id,
+            'title' => 'Thanh Toán đơn hàng ' . $customer->id,
             'customer' => $customer,
-            'carts' => $customer->carts()->get()
+            'carts' => $customer->carts()->get(),
         ]);
-        
 
     }
 
@@ -103,9 +100,7 @@ class CartController extends Controller
     //         'customer' => $customer,
     //         'carts' => $customer->carts()->get()
     //     ]);
-        
 
     // }
-    
-    
+
 }

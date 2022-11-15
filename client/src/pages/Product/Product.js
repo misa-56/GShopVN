@@ -4,18 +4,36 @@ import request from '../../utils/request';
 import images from '../../assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+// import swal from 'sweetalert';
+import { CartContext } from '../../contexts/cartCount';
 
 const Product = () => {
     let { id } = useParams();
     const [products, setProducts] = useState([]);
 
+    // const handleAddProduct = (product) => {
+    //     let cart = localStorage.getItem('cart');
+    //     if (cart) {
+    //         let arr = JSON.parse(cart);
+    //         arr.push(product);
+    //         localStorage.setItem('cart', JSON.stringify(arr));
+    //     } else {
+    //         localStorage.setItem('cart', JSON.stringify([product]));
+    //     }
+    //     swal({
+    //         title: 'Thêm sản phẩm thành công!',
+    //         text: 'Hãy kiểm tra giỏ hàng!',
+    //         icon: 'success',
+    //     });
+    // };
+
+    // localStorage.removeItem('cart');
     useEffect(() => {
         request
             .get(`/product/${id}`)
             .then((res) => {
                 let products = res.data;
                 setProducts(products);
-                console.log(res);
             })
             .catch((error) => console.log(error));
     }, [id]);
@@ -98,133 +116,143 @@ const Product = () => {
                                         <div className="p-t-33">
                                             <div className="flex-w flex-r-m p-b-10">
                                                 <div className="d-flex">
-                                                    <form action="/add-cart" method="post">
-                                                        {/* @csrf */}
-                                                        {/* @if ($product->price !== NULL) */}
+                                                    {/* <form
+                                                    action="/add-cart" method="post"
+                                                    > */}
+                                                    {/* @csrf */}
+                                                    {/* @if ($product->price !== NULL) */}
 
-                                                        {/* @if($product->term !== NULL) */}
-                                                        {(() => {
-                                                            if (product.term != null) {
-                                                                return (
-                                                                    <div data-toggle="">
-                                                                        <p className="font-weight-bold">Thời hạn</p>
+                                                    {/* @if($product->term !== NULL) */}
+                                                    {(() => {
+                                                        if (product.term != null) {
+                                                            return (
+                                                                <div data-toggle="">
+                                                                    <p className="font-weight-bold">Thời hạn</p>
 
-                                                                        {/* @foreach($collect as $coll) */}
-                                                                        <a
-                                                                            className="btn border-info
+                                                                    {/* @foreach($collect as $coll) */}
+                                                                    <a
+                                                                        className="btn border-info
                                                                                         @if($coll->id == $product->id)
                                                                                         btn-info active
                                                                                         @endif
                                                                                         "
-                                                                            href="/san-pham/{{ $coll->id }}-{{ Str::slug($coll->name, '-') }}.html"
-                                                                        >
-                                                                            {/* {{$coll->term}} */}
-                                                                        </a>
-                                                                        {/* @endforeach */}
+                                                                        href="/san-pham/{{ $coll->id }}-{{ Str::slug($coll->name, '-') }}.html"
+                                                                    >
+                                                                        {/* {{$coll->term}} */}
+                                                                    </a>
+                                                                    {/* @endforeach */}
 
-                                                                        <hr />
+                                                                    <hr />
+                                                                </div>
+                                                            );
+                                                        }
+                                                    })()}
+
+                                                    {/* @if($product->account_email == 1) */}
+                                                    {(() => {
+                                                        if (product.account_email === '1') {
+                                                            return (
+                                                                <div>
+                                                                    <p className="font-weight-bold">
+                                                                        Nhập thông tin bổ sung &nbsp;
+                                                                        <span className="text-danger">*</span>
+                                                                    </p>
+                                                                    <div className="form-group">
+                                                                        <input
+                                                                            className="form-control"
+                                                                            type="text"
+                                                                            placeholder="Email/user tài khoản"
+                                                                            id="acc_email"
+                                                                            name="acc_email"
+                                                                            // value=""
+                                                                            autoComplete="off"
+                                                                            required
+                                                                        />
                                                                     </div>
-                                                                );
-                                                            }
-                                                        })()}
 
-                                                        {/* @if($product->account_email == 1) */}
-                                                        {(() => {
-                                                            if (product.account_email === '1') {
-                                                                return (
-                                                                    <div>
-                                                                        <p className="font-weight-bold">
-                                                                            Nhập thông tin bổ sung &nbsp;
-                                                                            <span className="text-danger">*</span>
-                                                                        </p>
-                                                                        <div className="form-group">
-                                                                            <input
-                                                                                className="form-control"
-                                                                                type="text"
-                                                                                placeholder="Email/user tài khoản"
-                                                                                id="acc_email"
-                                                                                name="acc_email"
-                                                                                // value=""
-                                                                                autoComplete="off"
-                                                                                required
-                                                                            />
-                                                                        </div>
+                                                                    {/* @if($product->account_password == 1) */}
+                                                                    {(() => {
+                                                                        if (product.account_password === '1') {
+                                                                            return (
+                                                                                <div className="form-group">
+                                                                                    <input
+                                                                                        className="form-control"
+                                                                                        type="text"
+                                                                                        placeholder="Password tài khoản"
+                                                                                        id="acc_password"
+                                                                                        name="acc_password"
+                                                                                        // value=""
+                                                                                        autoComplete="off"
+                                                                                        required
+                                                                                    />
+                                                                                </div>
+                                                                            );
+                                                                        }
+                                                                    })()}
+                                                                    {/* @endif */}
+                                                                    <hr />
+                                                                </div>
+                                                            );
+                                                        }
+                                                    })()}
 
-                                                                        {/* @if($product->account_password == 1) */}
-                                                                        {(() => {
-                                                                            if (product.account_password === '1') {
-                                                                                return (
-                                                                                    <div className="form-group">
-                                                                                        <input
-                                                                                            className="form-control"
-                                                                                            type="text"
-                                                                                            placeholder="Password tài khoản"
-                                                                                            id="acc_password"
-                                                                                            name="acc_password"
-                                                                                            // value=""
-                                                                                            autoComplete="off"
-                                                                                            required
-                                                                                        />
-                                                                                    </div>
-                                                                                );
-                                                                            }
-                                                                        })()}
-                                                                        {/* @endif */}
-                                                                        <hr />
-                                                                    </div>
-                                                                );
-                                                            }
-                                                        })()}
+                                                    {/* @endif */}
 
-                                                        {/* @endif */}
-
-                                                        <div className="d-flex mb-3">
-                                                            <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                                <i className="fs-16 zmdi zmdi-minus"></i>
-                                                            </div>
-
-                                                            <input
-                                                                className="mr-2 border border-info rounded d-none"
-                                                                type="text"
-                                                                // style="width: 50px;"
-                                                                name="num_product"
-                                                                // value="1"
-                                                                min="1"
-                                                            />
-
-                                                            <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                                <i className="fs-16 zmdi zmdi-plus"></i>
-                                                            </div>
-                                                            {(() => {
-                                                                if (product.stock !== '1') {
-                                                                    return (
-                                                                        <button
-                                                                            type="submit"
-                                                                            className="btn btn-light border border-info "
-                                                                            disabled
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faShoppingCart} />{' '}
-                                                                            Thêm vào Giỏ
-                                                                        </button>
-                                                                    );
-                                                                } else {
-                                                                    return (
-                                                                        <button
-                                                                            type="submit"
-                                                                            className="btn btn-light border border-info "
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faShoppingCart} />{' '}
-                                                                            Thêm vào Giỏ
-                                                                        </button>
-                                                                    );
-                                                                }
-                                                            })()}
+                                                    <div className="d-flex mb-3">
+                                                        <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                            <i className="fs-16 zmdi zmdi-minus"></i>
                                                         </div>
 
-                                                        {/* <input type="hidden" name="product_id" value="{{ $product->id }}" /> */}
-                                                        {/* @endif
+                                                        <input
+                                                            className="mr-2 border border-info rounded d-none"
+                                                            type="text"
+                                                            // style="width: 50px;"
+                                                            name="num_product"
+                                                            // value="1"
+                                                            min="1"
+                                                        />
+
+                                                        <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                            <i className="fs-16 zmdi zmdi-plus"></i>
+                                                        </div>
+                                                        {(() => {
+                                                            if (product.stock !== '1') {
+                                                                return (
+                                                                    <button
+                                                                        type="submit"
+                                                                        className="btn btn-light border border-info "
+                                                                        disabled
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faShoppingCart} /> Thêm
+                                                                        vào Giỏ
+                                                                    </button>
+                                                                );
+                                                            } else {
+                                                                return (
+                                                                    <CartContext.Consumer>
+                                                                        {({ handleAddProduct }) => (
+                                                                            <button
+                                                                                onClick={() =>
+                                                                                    handleAddProduct(product)
+                                                                                }
+                                                                                className="btn btn-light border border-info "
+                                                                            >
+                                                                                <FontAwesomeIcon
+                                                                                    icon={faShoppingCart}
+                                                                                />{' '}
+                                                                                Thêm vào Giỏ
+                                                                            </button>
+                                                                        )}
+                                                                    </CartContext.Consumer>
+                                                                );
+                                                            }
+                                                        })()}
+                                                    </div>
+
+                                                    {/* <input type="hidden" name="product_id" value="{{ $product->id }}" /> */}
+                                                    {/* @endif
                                     @csrf */}
-                                                    </form>
+                                                    {/* </form> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -264,57 +292,9 @@ const Product = () => {
                                         </div>
 
                                         {/* <!-- - --> */}
-                                        <div className="tab-pane fade" id="reviews" role="tabpanel">
-                                            <div className="row">
-                                                <div className="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                                    <div className="p-b-30 m-lr-15-sm">
-                                                        {/* <!-- Review --> */}
-                                                        <div className="flex-w flex-t p-b-68">
-                                                            <div className="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                                                <img src="images/avatar-01.jpg" alt="AVATAR" />
-                                                            </div>
-
-                                                            <div className="size-207">
-                                                                <div className="flex-w flex-sb-m p-b-17">
-                                                                    <span className="mtext-107 cl2 p-r-20">
-                                                                        Ariana Grande
-                                                                    </span>
-
-                                                                    <span className="fs-18 cl11">
-                                                                        <i className="zmdi zmdi-star"></i>
-                                                                        <i className="zmdi zmdi-star"></i>
-                                                                        <i className="zmdi zmdi-star"></i>
-                                                                        <i className="zmdi zmdi-star"></i>
-                                                                        <i className="zmdi zmdi-star-half"></i>
-                                                                    </span>
-                                                                </div>
-
-                                                                <p className="stext-102 cl6">
-                                                                    Quod autem in homine praestantissimum atque optimum
-                                                                    est, id deseruit. Apud ceteros autem philosophos
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr />
-                            <section className="sec-relate-product bg0 p-t-45 p-b-105">
-                                <div className="container">
-                                    <div className="p-b-45">
-                                        <h4 className="text-dark">Sản phẩm liên quan</h4>
-                                    </div>
-                                    <div className="row">
-                                        {/* @foreach($products as $key => $product)
-                        @include('products.list')
-                    @endforeach */}
-                                    </div>
-                                </div>
-                            </section>
                         </div>
                     </div>
                 );

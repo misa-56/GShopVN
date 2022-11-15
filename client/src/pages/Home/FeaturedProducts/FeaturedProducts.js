@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './FeaturedProducts.css';
-import RemoveVietnamese from '../../../scripts/RemoveVietnamese/RemoveVietnamese';
+// import RemoveVietnamese from '../../../scripts/RemoveVietnamese/RemoveVietnamese';
 import images from '../../../assets/images';
 
 class FeaturedProducts extends React.Component {
@@ -87,7 +87,7 @@ class FeaturedProducts extends React.Component {
                     <Slider {...settings}>
                         {this.state.featureds.map((product) => (
                             <div className="border rounded text-center p-3 bg-white" key={product.id}>
-                                <Link to={'/san-pham/' + RemoveVietnamese(product.name)}>
+                                <Link to={'/product/' + product.id}>
                                     <img
                                         className="w-100 rounded mb-3"
                                         src={images.urlImg + product.thumb}
@@ -96,10 +96,7 @@ class FeaturedProducts extends React.Component {
                                 </Link>
 
                                 <h6>
-                                    <Link
-                                        className="text-decoration-none"
-                                        to="/san-pham/{product.name }-{{ Str::slug($product->name, '-') }}.html"
-                                    >
+                                    <Link className="text-decoration-none" to={'/product/' + product.id}>
                                         {product.name}
                                     </Link>
                                 </h6>

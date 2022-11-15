@@ -14,7 +14,6 @@ const Category = () => {
             .then((res) => {
                 let category = res.data.products.data;
                 setCategory(category);
-                console.log(category);
             })
             .catch((error) => console.log(error));
     }, [id]);

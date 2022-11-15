@@ -1,19 +1,24 @@
+// import React, { useState } from 'react';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import images from '../../../assets/images';
 import { NavDropdown, Nav, Navbar, Container } from 'react-bootstrap';
-import './Login/index';
-import Login from './Login/index';
+// import './Login/index';
+// import Login from './Login/index';
 import { Link } from 'react-router-dom';
 // import { LinkContainer } from 'react-router-bootstrap';
+import { CartContext } from '../../../contexts/cartCount';
 
 function Header() {
+    // const cartCount = useState([JSON.parse(localStorage.getItem('cart')).length || '0']);
+    // console.log(cartCount);
+
     return (
         <header>
             {/* headerTop */}
             <div className="d-none d-md-block">
-                <nav className="container d-none d-md-flex justify-content-between align-items-center">
+                <nav className="container d-none d-md-flex justify-content-between align-items-center p-2">
                     <div className="text-white rounded bg-info px-2 ">
                         <span>
                             Hỗ trợ nhanh nhất tại Zalo:{' '}
@@ -28,7 +33,7 @@ function Header() {
                         </span>
                     </div>
                     {/* LOGIN */}
-                    <Login />
+                    {/* <Login /> */}
                     {/* LOGIN */}
                 </nav>
             </div>
@@ -103,10 +108,14 @@ function Header() {
                                 <button className="btn btn-light border-dark mb-2 p-2">
                                     <b className="d-none d-lg-inline">Giỏ Hàng </b>
                                     <FontAwesomeIcon className="cart" icon={faCartPlus} />
-                                    <span className="badge badge-info" id="lblCartCount">
-                                        {' '}
-                                        0{/* {{ $productQuantity }}{' '} */}
-                                    </span>
+                                    <CartContext.Consumer>
+                                        {({ cartCount }) => (
+                                            <span className="badge badge-info" id="lblCartCount">
+                                                {' '}
+                                                {JSON.parse(localStorage.getItem('cart')).length}
+                                            </span>
+                                        )}
+                                    </CartContext.Consumer>
                                 </button>
                             </Link>
                             {/* {{-- -----------------------CARTS--------------------- --}} */}
@@ -126,7 +135,14 @@ function Header() {
                                     <b className="d-none d-lg-inline">Giỏ Hàng</b>
                                     <FontAwesomeIcon className="cart" icon={faCartPlus} />
                                     <span className="bg-info badge badge-warning" id="lblCartCount">
-                                        0{/* {{ $productQuantity }} */}
+                                        <CartContext.Consumer>
+                                            {({ cartCount }) => (
+                                                <span className="badge badge-info" id="lblCartCount">
+                                                    {' '}
+                                                    {JSON.parse(localStorage.getItem('cart')).length}
+                                                </span>
+                                            )}
+                                        </CartContext.Consumer>
                                     </span>
                                 </button>
                             </Link>
@@ -141,7 +157,7 @@ function Header() {
                             <span className="d-none d-md-inline"> Chào {{ Auth::user()->name }}</span>
                         </a>
                     @else */}
-                            <Login />
+                            {/* <Login /> */}
                             {/* @endif */}
                             {/* {{-- ------------------ACCOUNT--------------------------- --}} */}
                         </div>

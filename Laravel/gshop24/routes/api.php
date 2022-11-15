@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIs\AllProductController;
+use App\Http\Controllers\APIs\CartController;
 use App\Http\Controllers\APIs\MainController;
 use App\Http\Controllers\APIs\MenuController;
 use App\Http\Controllers\APIs\PageController;
@@ -34,3 +35,6 @@ Route::get('product/{id}', [ProductController::class, 'product']);
 #shop
 Route::get('all-product', [AllProductController::class, 'index']);
 Route::get('category/{id}', [MenuController::class, 'index']);
+
+#cart
+Route::post('cart', [CartController::class, 'addCart']);

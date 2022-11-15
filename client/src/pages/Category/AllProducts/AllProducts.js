@@ -15,7 +15,6 @@ class AllProducts extends Component {
             .then((res) => {
                 const allProducts = res.data.data;
                 this.setState({ allProducts });
-                console.log(allProducts);
             })
             .catch((err) => console.log(err));
     }

@@ -17,10 +17,7 @@ function List(props) {
                 </Link>
 
                 <h6>
-                    <Link
-                        className="text-decoration-none"
-                        to="/san-pham/{props.name }-{{ Str::slug($props->name, '-') }}.html"
-                    >
+                    <Link className="text-decoration-none" to={'/product/' + props.id}>
                         {props.name}
                     </Link>
                 </h6>

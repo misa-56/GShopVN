@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\SocialController;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
+
 // $random = Str::random(8);
-
-
 
 Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
 Route::post('admin/users/login', [LoginController::class, 'store']);
@@ -49,11 +47,11 @@ Route::middleware(['AdminRole'])->group(function () {
         #Attribute
         // Route::prefix('products')->group(function () {
         //     Route::get('attribute', [ProductAttributeController::class, 'add']);
-            // Route::post('add', [ProductController::class, 'store']);
-            // Route::get('list', [ProductController::class, 'index']);
-            // Route::get('edit/{product}', [ProductController::class, 'show']);
-            // Route::post('edit/{product}', [ProductController::class, 'update']);
-            // Route::DELETE('destroy', [ProductController::class, 'destroy']);
+        // Route::post('add', [ProductController::class, 'store']);
+        // Route::get('list', [ProductController::class, 'index']);
+        // Route::get('edit/{product}', [ProductController::class, 'show']);
+        // Route::post('edit/{product}', [ProductController::class, 'update']);
+        // Route::DELETE('destroy', [ProductController::class, 'destroy']);
         // });
         #Pages
         Route::prefix('pages')->group(function () {
@@ -95,11 +93,11 @@ Route::post('/quen-mat-khau', [App\Http\Controllers\ForgotPasswordController::cl
 Route::get('/dat-lai-mat-khau/{token}', [App\Http\Controllers\ResetPasswordController::class, 'getPassword']);
 Route::post('/dat-lai-mat-khau', [App\Http\Controllers\ResetPasswordController::class, 'updatePassword']);
 //social
-Route::prefix('facebook')->name('facebook.')->group( function(){
+Route::prefix('facebook')->name('facebook.')->group(function () {
     Route::get('auth', [SocialController::class, 'loginUsingFacebook'])->name('login');
     Route::get('callback', [SocialController::class, 'callbackFromFacebook'])->name('callback');
 });
-Route::prefix('google')->name('google.')->group( function(){
+Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [SocialController::class, 'loginUsingGoogle'])->name('login');
     Route::get('callback', [SocialController::class, 'callbackFromGoogle'])->name('callback');
 });
@@ -129,11 +127,8 @@ Route::get('checkout', [App\Http\Controllers\CartController::class, 'checkout'])
 Route::get('checkout/{customer}-{order_key}', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
 // Route::get('checkout/{customer}/'. $random, [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
 
-
-
-
 #pages
 Route::get('{id}-{slug}', [App\Http\Controllers\PageController::class, 'index']);
 
 #search
-Route::get('search',[App\Http\Controllers\SearchController::class, 'getSearch'])->name('search');
+Route::get('search', [App\Http\Controllers\SearchController::class, 'getSearch'])->name('search');

@@ -131,7 +131,7 @@ class LoginController extends Controller
     public function reset_password(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
 
         return redirect()->back()->with('reset_password_message', 'Thay đổi mật khẩu thành công!');
     }
