@@ -112,7 +112,9 @@ function Header() {
                                         {({ cartCount }) => (
                                             <span className="badge badge-info" id="lblCartCount">
                                                 {' '}
-                                                {JSON.parse(localStorage.getItem('cart')).length}
+                                                {JSON.parse(localStorage.getItem('cart'))
+                                                    ? JSON.parse(localStorage.getItem('cart')).length
+                                                    : '0'}
                                             </span>
                                         )}
                                     </CartContext.Consumer>
@@ -139,7 +141,9 @@ function Header() {
                                             {({ cartCount }) => (
                                                 <span className="badge badge-info" id="lblCartCount">
                                                     {' '}
-                                                    {JSON.parse(localStorage.getItem('cart')).length}
+                                                    {JSON.parse(localStorage.getItem('cart'))
+                                                        ? JSON.parse(localStorage.getItem('cart')).length
+                                                        : '0'}
                                                 </span>
                                             )}
                                         </CartContext.Consumer>

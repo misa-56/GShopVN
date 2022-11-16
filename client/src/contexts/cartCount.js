@@ -17,7 +17,6 @@ export class CartProvider extends Component {
     // }
 
     handleAddProduct(product) {
-        console.log(JSON.parse(localStorage.getItem('cart')).length);
         let cart = localStorage.getItem('cart');
         if (cart) {
             let arr = JSON.parse(cart);
